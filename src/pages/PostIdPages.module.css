@@ -1,0 +1,50 @@
+.main  {
+    padding: 60px;
+}
+
+.post  {
+    margin: 25px;
+    font-size: 24px;
+    border: 2px solid teal;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.post_title  {
+    font-weight: bold;
+}
+
+
+
+.comments  {
+    font-size: 40px;
+    text-align: center;
+}
+
+.comments_list  {
+    border: 3px dashed teal;
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 35px;
+}
+
+.comm_card  {
+    
+    border-bottom: 2px solid rgb(0, 68, 68);
+    padding: 15px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.comm_email  {
+    font-size: 15px;
+}
+
