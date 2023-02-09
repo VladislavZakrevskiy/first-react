@@ -5,6 +5,7 @@ import PostIdPage from "../pages/PostIdPage";
 import Posts from "../pages/Posts";
 import Profile from "../pages/Profile";
 import AvatarPhoto from '../assets/photo.jpg'
+import Reg from '../pages/Reg'
 
 
 export const  privateRoutes = [
@@ -28,5 +29,6 @@ export const  privateRoutes = [
 
 export const publicRoutes = [
     {path: '/login', element: <Login/>, exact: false},
+    {path: '/registration', element: <Reg/>, exact: false},
     {path: '*', element: <Login/>, exact: false}
 ]

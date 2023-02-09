@@ -21,11 +21,11 @@ if(!posts.length){
         <TransitionGroup>
                 {posts.map((post, index) =>
                     <CSSTransition
-                        key={post.id}
+                        key={post.post_id}
                         timeout={500}
                         classNames="post"
                     >
-                        <PostItem remove={remove} number={index + 1} post={post} />
+                        <PostItem key={post.post_id} remove={remove} number={index + 1} post={post} />
                     </CSSTransition>
                 )}
             </TransitionGroup>

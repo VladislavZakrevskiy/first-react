@@ -25,9 +25,11 @@ const Posts = () => {
     const lastElement = useRef()
     const observer = useRef()
     const [fetchPosts, isPostsLoading,postError] = useFetching(async()=>{
-      let response = await PostService.getAll(limit, page)
-      setPosts ([...posts,...response.data])
+      let response = await PostService.getAll(limit, page, "Влад Закревский")
+      console.log(response)
+      setPosts ([...posts,... response.data])
       const totalCount = response.headers['x-total-count']
+      console.log(totalCount)
       setTotalPages(getPageCount(totalCount, limit))
     })
 
@@ -45,7 +47,7 @@ const Posts = () => {
     }
     
     const removePost =(post)=>{
-      setPosts(posts.filter(p => p.id !== post.id))
+      setPosts(posts.filter(p => p.post_id !== post.post_id))
     }
 
     const changePage =(page)=>{
@@ -89,7 +91,7 @@ const Posts = () => {
     <PostList 
       remove = {removePost} 
       posts={sortedAndSearchPosts}  
-      title="Список постов 1"
+      title={`Список постов user НАЙДИ В POSTS.JSX`}
       />
     <div ref={lastElement} style={{height:20}}>
 
