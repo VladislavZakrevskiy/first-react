@@ -3,19 +3,29 @@ import { Link } from 'react-router-dom'
 import PostService from '../API/PostService'
 import MyButton from '../components/UI/button/MyButton'
 import MyInput from '../components/UI/input/MyInput'
+import MyModal from '../components/UI/Modal/MyModal'
 import { AuthContext } from '../context'
+import findErrors from '../utils/findErrors'
+import classes from './Reg.module.css'
 
 const Login = () => {
-    const {isAuth, setIsAuth} = useContext(AuthContext)
+    const [modal, setModal] = useState(false)
+    const {isAuth, setIsAuth,isLoading, username, setUsername} = useContext(AuthContext)
     let [user, setUser] = useState({username:'', password:''})
+    let [error, setErr] = useState('')
     const submit = async event => {
         event.preventDefault()
-        let res = await PostService.login(user)
-        if(res.status === 200){
-            setIsAuth(true)
-            localStorage.setItem('auth',res.data)
+        let [error,token,username] = await findErrors(event, PostService.login, user, [400,401,403])
+        setErr(error)
+        if(username){
+            setUsername(username)
         }
+        if(token){
+            localStorage.setItem('auth',token)
+        }
+        setModal(true)
     }
+    
   return (
     <div style={{height:'30vw',border: '3px solid teal', borderRadius: 30, margin: 30, padding:50,  display:'flex', flexDirection:'column', justifyContent:'space-between', alignItems:'center'}}>
        
@@ -33,6 +43,21 @@ const Login = () => {
                 Регистрация
             </MyButton>
         </Link>
+        <MyModal
+            visible={modal}
+            setVisible={setModal}
+        >
+            {
+                typeof error == 'number'
+                ? setIsAuth(true)
+                : <div className={classes.error}>
+                <div className={classes.err_title}>
+                    {error}
+                </div>
+            </div>
+            }
+        </MyModal>
+
     </div>
   )
 }

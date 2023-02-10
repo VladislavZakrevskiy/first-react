@@ -1,11 +1,17 @@
 import axios from "axios";
 
 export default class PostService {
-    static async getAll(limit = 10, page = 1, username, token) {
-        let options = {
-            "username":username
-        }
-        const response = await axios.post('http://localhost:5000/api/posts/getByUser', options)
+    static async getAll(limit = 3, page = 1, username, token) {
+        const url = 'http://localhost:5000/api/posts/getByUser'
+        const response =  axios.post(url, {
+            username:username, 
+            limit:limit,
+            page:page
+        },{
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
         return response;
     }
 

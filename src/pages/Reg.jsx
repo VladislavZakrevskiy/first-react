@@ -1,27 +1,21 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PostService from '../API/PostService'
 import MyButton from '../components/UI/button/MyButton'
 import MyInput from '../components/UI/input/MyInput'
+import MyModal from '../components/UI/Modal/MyModal'
 import { AuthContext } from '../context'
+import findErrors from '../utils/findErrors'
 import classes from './Reg.module.css'
 
 const Reg = () => {
+    const [modal, setModal] = useState(false)
     const [reg, setReg] = useState({username:'', password:'', address:'', date_birth:'', telephone:'', email:''})
-    const {isAuth, setIsAuth} = useContext(AuthContext)
+    const [error, setErr] = useState()
+
     const submit = async event => {
-      event.preventDefault()
-      let set = new Set()
-      for(let el in reg){
-        if(el!==''){
-          set.add(true)
-        }
-        else set.add(false)
-      }
-      if(set.size === 1){
-        let res = await PostService.registration(reg)
-        console.log(await res.data)
-      }
+      setErr(await findErrors(event, PostService.registration, reg, [400,401,403]))
+      setModal(true) 
     }
 
     const formSome = (e, type) => {
@@ -45,7 +39,7 @@ const Reg = () => {
             setReg({...reg, email: e.target.value})
           break;
       }
-      console.log(reg)
+      
     }
 
   return (
@@ -76,7 +70,25 @@ const Reg = () => {
         </Link>
     </div>
         
-       
+    <MyModal
+      visible={modal} 
+      setVisible={setModal}
+    >
+      {
+        typeof error == 'object'
+        ? <div className={classes.error}>
+              <div className={classes.err_title}>{error.message}</div>
+            {error.errors.errors.reverse().map(el => 
+              <div className={classes.err_desc}>{el.msg}</div>
+          )}
+          </div>
+        : <div className={classes.error}>
+            <div className={classes.err_title}>{error}</div>
+          </div>
+        
+      }
+    </MyModal>
+
     </div>
   )
 }

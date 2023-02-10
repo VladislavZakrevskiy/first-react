@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import PostService from "../API/PostService";
 import { usePosts } from "../hooks/usePosts";
 import useFetching from "../hooks/useFetching";
@@ -12,25 +12,26 @@ import MyLoader from "../components/UI/loader/MyLoader";
 import Pagination from "../components/UI/pagination/Pagination";
 import { useObserver } from '../hooks/useObserver';
 import MySelect from '../components/UI/select/MySelect';
+import { AuthContext } from '../context';
 
 
 const Posts = () => {
+    const {isAuth, setIsAuth,isLoading, username, setUsername} = useContext(AuthContext)
     const [posts, setPosts] = useState([])
     const [filter, setFilter] = useState({sort:'', query: ''})
     const [modal, setModal] = useState(false)
     const sortedAndSearchPosts = usePosts(posts, filter.sort, filter.query)
     const [totalPages, setTotalPages] = useState(0)
-    const [limit, setLimit] = useState(10)
+    const [limit, setLimit] = useState(5)
     const [page, setPage] = useState(1)
     const lastElement = useRef()
     const observer = useRef()
     const [fetchPosts, isPostsLoading,postError] = useFetching(async()=>{
-      let response = await PostService.getAll(limit, page, "Влад Закревский")
-      console.log(response)
-      setPosts ([...posts,... response.data])
-      const totalCount = response.headers['x-total-count']
-      console.log(totalCount)
-      setTotalPages(getPageCount(totalCount, limit))
+      let response = await PostService.getAll(limit, page, username, localStorage.getItem('auth'))
+      setPosts ([...posts,... response.data.arr])
+      const totalCount = response.data.leng
+      console.log(response.data)
+      setTotalPages(getPageCount(totalCount, limit)-1)
     })
 
     useEffect(()=>{
@@ -91,7 +92,7 @@ const Posts = () => {
     <PostList 
       remove = {removePost} 
       posts={sortedAndSearchPosts}  
-      title={`Список постов user НАЙДИ В POSTS.JSX`}
+      title={`Список постов ${username}`}
       />
     <div ref={lastElement} style={{height:20}}>
 

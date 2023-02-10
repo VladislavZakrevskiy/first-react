@@ -9,6 +9,7 @@ import { AuthContext } from './context';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false)
+  const [username, setUsername] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(()=>{
@@ -21,7 +22,9 @@ function App() {
       <AuthContext.Provider value={{
       isAuth,
       setIsAuth,
-      isLoading
+      isLoading,
+      username,
+      setUsername
       }}>
         <BrowserRouter>
           <Navbar/>
