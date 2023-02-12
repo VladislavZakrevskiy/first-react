@@ -2,10 +2,11 @@ import axios from 'axios';
 import React,{useContext, useState} from 'react';
 import classes from './Dropzone.module.css'
 import { AuthContext } from '../context/index'
+import { v4 } from 'uuid'
+ 
 
-
-const  MyDropZone =({setModal})=>{
-  const {username} = useContext(AuthContext)
+const  MyDropZone =({setModal, isPost, setIsImage})=>{
+  const {username, post_id, setPost_id} = useContext(AuthContext)
   const [drag, setDrag] = useState(false)
 
   function dragStartHandler(e){
@@ -18,15 +19,24 @@ const  MyDropZone =({setModal})=>{
     setDrag(false)
     setModal(false)
   }
-
     function onDropHandler(e){
     e.preventDefault()
-    setTimeout(()=>{setModal(false); setDrag(false)}, 500)
+    console.log(post_id)
+    setTimeout(()=>{setModal(false); setDrag(false); }, 500)
     let files = [...e.dataTransfer.files]
     const formData = new FormData()
     formData.append('image', files[0])
-    formData.append('username', username)
-    axios.post('http://localhost:5000/api/images/702b3564-30c7-4624-97ae-8097c0673517', formData)
+    if(isPost){
+      localStorage.setItem('post_id', v4())
+      formData.append('post_id', localStorage.getItem('post_id'))
+    }
+    else {
+       formData.append('username', username)
+      }
+    axios.post('http://localhost:5000/api/images/', formData)
+      .then(()=>{
+        setIsImage(true)
+    })
   }
 
     return(

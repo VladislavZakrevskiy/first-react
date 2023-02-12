@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/App.css'
+import ImgAvatar from './UI/avatar/imgAvatar'
 import MyButton from './UI/button/MyButton'
 import MyModal from './UI/Modal/MyModal'
+import classes from './form.module.css'
 
 
-const PostItem=(props) =>{
+const PostItem=(props, {keyPost_id}) =>{
+  console.log(keyPost_id)
   const router = useNavigate()
   const [modal, setModal] = useState(false)
   return (
-    <div style={{border: 'solid 2px teal', borderRadius: 20, padding: 10, margin: '20px 0 '}} >
+    <div style={{backgroundColor:'white',border: 'solid 2px teal', borderRadius: 20, padding: 10, margin: '20px 0 '}} >
     <div className='post'>
        <strong style={{padding:10,  borderBottom:'2px solid teal', borderRadius: 10}}>{props.number}. {props.post.title}</strong>
        <div style={{fontSize:20, padding: 20}}>
@@ -45,6 +48,7 @@ const PostItem=(props) =>{
       <div style={{color:'grey', fontSize: 10, marginLeft: 5}}>
       { props.post.date_made}
      </div>
+      
      </div>
   )
 }

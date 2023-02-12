@@ -28,10 +28,11 @@ export default class PostService {
         return response
     }
 
-    static async createPost(title, body, username, date_made) {
+    static async createPost(post_id, title, body, username, date_made) {
         const url = 'http://localhost:5000/api/posts/create'
         const token = localStorage.getItem('auth')
         await axios.post(url, {
+            post_id:post_id,
             title:title, 
             body:body, 
             username:username, 

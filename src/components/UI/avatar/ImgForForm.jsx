@@ -6,12 +6,12 @@ import classes from '../../../pages/Profile.module.css'
 import {Buffer} from 'buffer';
 import { useImage } from '../../../hooks/useImage'
 
-const ImgAvatar = ({className, onClick, post_id}) => {
+const ImgForForm = ({className, onClick}) => {
     const {username} = useContext(AuthContext)
     const url = 'http://localhost:5000/api/images/'
-    console.log(post_id)
 
-    const screenShot = useImage(post_id)
+
+    const screenShot = useImage(localStorage.getItem('post_id'))
   return (
     <div>
         <img onClick={onClick} className={className} src={screenShot}  />
@@ -19,7 +19,7 @@ const ImgAvatar = ({className, onClick, post_id}) => {
   )
 }
 
-export default ImgAvatar
+export default ImgForForm
 
 
 

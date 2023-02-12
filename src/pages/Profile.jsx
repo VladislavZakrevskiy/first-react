@@ -2,12 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import MyButton from '../components/UI/button/MyButton'
 import classes from './Profile.module.css'
-import MyInput from '../components/UI/input/MyInput'
 import MyDropzone from '../components/Dropzone'
 import PostService from '../API/PostService'
-import { ImageDataConverter } from '../utils/imageConverter'
 import MyModal from '../components/UI/Modal/MyModal'
-import useFetching from '../hooks/useFetching'
 import { AuthContext } from '../context'
 import ImgAvatar from '../components/UI/avatar/imgAvatar'
 
@@ -15,6 +12,7 @@ import ImgAvatar from '../components/UI/avatar/imgAvatar'
 const Profile = ({...props}) => {
     const {username} = useContext(AuthContext)
     const [modal, setModal] = useState(false)
+    const [modalDrop, setModalDrop] = useState(false)
     
     useEffect(()=>{
         async function getInfo(){
@@ -39,7 +37,7 @@ const Profile = ({...props}) => {
                 visible={modal}
                 setVisible={setModal}
             >
-                <MyDropzone setModal={setModal}/>
+                <MyDropzone  setModal={setModalDrop}/>
             </MyModal>
         </div>
        <div className={classes.left}>

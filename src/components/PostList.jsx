@@ -1,6 +1,9 @@
 import React from 'react'
 import PostItem from './postItem'
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
+import ImgAvatar from './UI/avatar/imgAvatar'
+import classes from './form.module.css'
+
 
 
 const PostList=({posts, title, remove, ...props})=> {
@@ -24,11 +27,15 @@ if(!posts.length){
                         key={post.post_id}
                         timeout={500}
                         classNames="post"
-                    >
-                        <PostItem key={post.post_id} remove={remove} number={index + 1} post={post} />
+                    >                       
+                        <div className={classes.post}>
+                        <PostItem keyPost_id = {post.post_id} key={post.post_id} remove={remove} number={index + 1} post={post} />
+                        <ImgAvatar post_id={post.post_id} className={classes.img}/>
+                        </div>
                     </CSSTransition>
                 )}
             </TransitionGroup>
+            
     </div>
     
 

@@ -17,7 +17,7 @@ import { AuthContext } from '../context';
 
 const Posts = () => {
 
-    const {isAuth, setIsAuth,isLoading, username, setUsername} = useContext(AuthContext)
+    const {isAuth, setIsAuth,isLoading, username, setUsername, post_id} = useContext(AuthContext)
     const [posts, setPosts] = useState([])
     const [filter, setFilter] = useState({sort:'', query: ''})
     const [modal, setModal] = useState(false)
@@ -43,9 +43,9 @@ const Posts = () => {
     })
 
     const createPost =async (newPost)=>{
-      setPosts([...posts, newPost])
+      
       setModal(false)
-      await PostService.createPost(newPost.title, newPost.body, username, new Date)
+      await PostService.createPost(localStorage.getItem('post_id'),newPost.title, newPost.body, username, new Date)
     }
     
     const removePost =async (post)=>{

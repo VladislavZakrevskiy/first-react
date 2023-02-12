@@ -11,6 +11,7 @@ function App() {
   const [isAuth, setIsAuth] = useState(false)
   const [username, setUsername] = useState('')
   const [isLoading, setIsLoading] = useState(true)
+  const [post_id, setPost_id] = useState('')
 
   useEffect(()=>{
     if(localStorage.getItem('auth')){
@@ -24,7 +25,9 @@ function App() {
       setIsAuth,
       isLoading,
       username,
-      setUsername
+      setUsername,
+      post_id,
+      setPost_id
       }}>
         <BrowserRouter>
           <Navbar/>

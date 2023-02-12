@@ -9,17 +9,31 @@
 }
 
 .MyModalContent  {
-    padding: 40px;
+    padding: 20px;
     background: white;
     border-radius: 30px;
     min-width: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+
 }
 
 .MyModal.active  {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.innerModal {
+    padding: 20px;
+}
+
+.btn  {
+    align-self: flex-end;
+    border: none;
+    font-size: larger;
+    color: grey;
+    cursor: pointer;
 }

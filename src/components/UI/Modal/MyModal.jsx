@@ -9,9 +9,12 @@ const MyModal = ({children, visible, setVisible}) => {
   }
 
   return (
-    <div onClick={()=> setVisible(false)} className={rootClasses.join(' ')}>
+    <div onClick={e=> {e.preventDefault();setVisible(false)}} className={rootClasses.join(' ')}>
         <div className={classes.MyModalContent} onClick={e=>e.stopPropagation()}>
-          {children}
+        <button onClick={e=>{e.preventDefault();setVisible(false)}} className={classes.btn}>X</button>
+          <div className={classes.innerModal}>
+            {children}
+          </div>
         </div>
     </div>
   )
