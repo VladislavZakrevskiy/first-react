@@ -1,5 +1,4 @@
  const getPageCount =(totalCount, limit) => {
-    console.log(Math.ceil(totalCount/limit))
     return Math.ceil(totalCount/limit)
    
 }

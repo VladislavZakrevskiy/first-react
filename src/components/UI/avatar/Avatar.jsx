@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Profile from '../../../pages/Profile'
 import MyModal from '../Modal/MyModal'
 import classes from './Avatar.module.css'
 import AvatarPhoto from '../../../assets/photo.jpg'
+import PostService from '../../../API/PostService'
+import { AuthContext } from '../../../context'
+import ImgAvatar from './imgAvatar'
 
 const Avatar = ({src}) => {
     const [modal, setModal] = useState(false)
 
+
+    let MemoProfile = React.memo(Profile)
 
   return (
     <div>
@@ -14,21 +19,12 @@ const Avatar = ({src}) => {
             visible={modal} 
             setVisible={setModal}
         >
-            <Profile
+            <MemoProfile
                 inModal ={true}
                 callbackForBtn = {()=>setModal(false)}
-                src = {AvatarPhoto}
-                value = {{username: "Влад Закревский"}}
-                info={{
-                    address: 'Знаменск',
-                    telephone: '899963062057',
-                    date: '16.03.2006',
-                    online: 'online',
-                    email: 'zakrevskiyvlada@yandex.ru'
-                }}
             />
         </MyModal>
-        <img onClick={()=>setModal(true)} src={src} alt='Профиль' className={classes.ava} />
+        <ImgAvatar onClick={()=>setModal(true)} className={classes.ava}/>
     </div>
   )
 }

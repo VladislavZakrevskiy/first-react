@@ -16,22 +16,22 @@ import { AuthContext } from '../context';
 
 
 const Posts = () => {
+
     const {isAuth, setIsAuth,isLoading, username, setUsername} = useContext(AuthContext)
     const [posts, setPosts] = useState([])
     const [filter, setFilter] = useState({sort:'', query: ''})
     const [modal, setModal] = useState(false)
     const sortedAndSearchPosts = usePosts(posts, filter.sort, filter.query)
     const [totalPages, setTotalPages] = useState(0)
-    const [limit, setLimit] = useState(5)
+    const [limit, setLimit] = useState(25)
     const [page, setPage] = useState(1)
     const lastElement = useRef()
     const observer = useRef()
     const [fetchPosts, isPostsLoading,postError] = useFetching(async()=>{
       let response = await PostService.getAll(limit, page, username, localStorage.getItem('auth'))
-      setPosts ([...posts,... response.data.arr])
+      setPosts ([...posts, ...response.data.arr])
       const totalCount = response.data.leng
-      console.log(response.data)
-      setTotalPages(getPageCount(totalCount, limit)-1)
+      setTotalPages(getPageCount(totalCount, limit))
     })
 
     useEffect(()=>{
@@ -42,13 +42,16 @@ const Posts = () => {
       setPage(page+1)
     })
 
-    const createPost =(newPost)=>{
+    const createPost =async (newPost)=>{
       setPosts([...posts, newPost])
       setModal(false)
+      await PostService.createPost(newPost.title, newPost.body, username, new Date)
     }
     
-    const removePost =(post)=>{
+    const removePost =async (post)=>{
       setPosts(posts.filter(p => p.post_id !== post.post_id))
+      console.log(post.post_id)
+      console.log(await PostService.deletePost(post.post_id, localStorage.getItem('auth')))
     }
 
     const changePage =(page)=>{

@@ -25,6 +25,7 @@
 }
 
 .comments_list  {
+    width: 80vw;
     border: 3px dashed teal;
     padding: 30px;
     border-radius: 30px;
@@ -35,7 +36,6 @@
 }
 
 .comm_card  {
-    
     border-bottom: 2px solid rgb(0, 68, 68);
     padding: 15px;
     border-radius: 20px;

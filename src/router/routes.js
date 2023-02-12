@@ -8,6 +8,7 @@ import AvatarPhoto from '../assets/photo.jpg'
 import Reg from '../pages/Reg'
 
 
+
 export const  privateRoutes = [
     {path: '/about', element: <About/>, exact:false },
     {path: '/posts', element: <Posts/>, exact:true },

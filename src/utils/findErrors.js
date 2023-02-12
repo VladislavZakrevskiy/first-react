@@ -26,33 +26,4 @@ export default findErrors
 
 
 
-// if(e.response.status == 400){
-//     console.log(e.response.data.message)
-//     e.response.data.errors.errors.map(el => {
-//       console.log(el.msg)
-//     })
-//   }
-//   if(e.response.status === 403 || e.response.status === 401){
-//     console.log(e.response.data)
-//   }
-
-
-// event.preventDefault()
-//         try{
-//           var res = await PostService.registration(reg)
-//           console.log(await res.config.data)  
-//         }
-//         catch(e){
-//           console.log(e.response.status)
-//           if(e.response.status == 400){
-//             console.log(e.response.data.message)
-//             e.response.data.errors.errors.map(el => {
-//               console.log(el.msg)
-//             })
-//           }
-//           if(e.response.status === 403 || e.response.status === 401){
-//             console.log(e.response.data)
-//           }
-//         }
-
 

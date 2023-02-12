@@ -13,6 +13,9 @@
     background: white;
     border-radius: 30px;
     min-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .MyModal.active  {
