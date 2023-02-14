@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context";
 
 export const useImage = (post_id) => {
-    const {username } = useContext(AuthContext)
+    const username = localStorage.getItem('username')
     const [screenShot, setScreenshot] = useState(undefined)
     const url = 'http://localhost:5000/api/images/'
 

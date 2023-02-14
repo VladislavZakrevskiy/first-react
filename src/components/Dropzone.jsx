@@ -6,7 +6,8 @@ import { v4 } from 'uuid'
  
 
 const  MyDropZone =({setModal, isPost, setIsImage})=>{
-  const {username, post_id, setPost_id} = useContext(AuthContext)
+  const { post_id, setPost_id} = useContext(AuthContext)
+  const username = localStorage.getItem('username')
   const [drag, setDrag] = useState(false)
 
   function dragStartHandler(e){
@@ -27,7 +28,6 @@ const  MyDropZone =({setModal, isPost, setIsImage})=>{
     const formData = new FormData()
     formData.append('image', files[0])
     if(isPost){
-      localStorage.setItem('post_id', v4())
       formData.append('post_id', localStorage.getItem('post_id'))
     }
     else {

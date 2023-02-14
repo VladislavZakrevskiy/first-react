@@ -18,3 +18,13 @@
     margin: 5px 0;
     background-color: rgba(0, 168, 168, .4);
 }
+
+.formForPostItem  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    gap: 20px;
+    flex-direction: column;
+    
+}

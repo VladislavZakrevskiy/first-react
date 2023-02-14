@@ -100,9 +100,75 @@ export default class PostService {
     })
     }
 
-    static async load(url,username){
-        
-            
+    static async updatePost(title, body, post_id){
+            const token = localStorage.getItem('auth')
+            let response = await axios.patch('http://localhost:5000/api/posts/update', 
+            {
+                title: title, 
+                body: body, 
+                post_id:post_id
+            }, 
+            { 
+                headers: 
+                {
+                    Authorization: "Bearer " + token 
+                }
+            }
+        )   
+            return response
+    }
+    static async updateUser(new_username , address, telephone, email) {
+        const token = localStorage.getItem('auth')
+        const response = await axios.patch('http://localhost:5000/api/users/update',{
+        old_username:localStorage.getItem('username'),
+        new_username: new_username, 
+        address:address, 
+        telephone:telephone, 
+        email:email
+    }, { 
+        headers: 
+        {
+            Authorization: "Bearer " + token 
         }
+    })
+        return response
+    }
+    static async setLike(post_id, username){
+        const token = localStorage.getItem('auth')
+        const response = await axios.patch('http://localhost:5000/api/posts/setLike', {
+        post_id:post_id, 
+        username:username
+    },{ 
+        headers: 
+        {
+            Authorization: "Bearer " + token 
+        }
+    })
+    }
+
+    static async deleteLike(post_id, username){
+        const token = localStorage.getItem('auth')
+        const response = await axios.patch('http://localhost:5000/api/posts/deleteLike', {
+        post_id:post_id, 
+        username:username
+    },{ 
+        headers: 
+        {
+            Authorization: "Bearer " + token 
+        }
+    })
+    }
+
+    static async getLikesForPost(post_id){
+        const token = localStorage.getItem('auth')
+        const response = await axios.get('http://localhost:5000/api/posts/CountLikes/' + post_id, { 
+        headers: 
+        {
+            Authorization: "Bearer " + token 
+        }
+    })
+        console.log(response)
+        return response.data
+    }
 
 }

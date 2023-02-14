@@ -13,17 +13,19 @@ import Pagination from "../components/UI/pagination/Pagination";
 import { useObserver } from '../hooks/useObserver';
 import MySelect from '../components/UI/select/MySelect';
 import { AuthContext } from '../context';
+import { v4 } from 'uuid';
 
 
 const Posts = () => {
 
-    const {isAuth, setIsAuth,isLoading, username, setUsername, post_id} = useContext(AuthContext)
+    const {isAuth, setIsAuth,isLoading, setUsername, post_id, upd} = useContext(AuthContext)
+    const username = localStorage.getItem('username')
     const [posts, setPosts] = useState([])
     const [filter, setFilter] = useState({sort:'', query: ''})
     const [modal, setModal] = useState(false)
     const sortedAndSearchPosts = usePosts(posts, filter.sort, filter.query)
     const [totalPages, setTotalPages] = useState(0)
-    const [limit, setLimit] = useState(25)
+    const [limit, setLimit] = useState(5)
     const [page, setPage] = useState(1)
     const lastElement = useRef()
     const observer = useRef()
@@ -33,7 +35,6 @@ const Posts = () => {
       const totalCount = response.data.leng
       setTotalPages(getPageCount(totalCount, limit))
     })
-
     useEffect(()=>{
       fetchPosts(limit, page)
     }, [page, limit])
@@ -41,8 +42,8 @@ const Posts = () => {
     useObserver(lastElement, page<totalPages, isPostsLoading, ()=>{
       setPage(page+1)
     })
-
     const createPost =async (newPost)=>{
+      localStorage.setItem('post_id', v4())
       
       setModal(false)
       await PostService.createPost(localStorage.getItem('post_id'),newPost.title, newPost.body, username, new Date)
@@ -93,6 +94,7 @@ const Posts = () => {
         <h1>Произошла ошибка ${postError}</h1>
     }
     <PostList 
+      
       remove = {removePost} 
       posts={sortedAndSearchPosts}  
       title={`Список постов ${username}`}

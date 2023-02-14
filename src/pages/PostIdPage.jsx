@@ -9,7 +9,7 @@ import MyButton from '../components/UI/button/MyButton';
 import { AuthContext } from '../context'
 
 const PostIdPage = () => {
-    const {username} = useContext(AuthContext)
+    const username = localStorage.getItem('username')
     const [commForm, setCommForm ] = useState({email:'', body:""})
     const [sub, setSub] = useState(false)
     const params = useParams()

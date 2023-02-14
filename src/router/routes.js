@@ -6,7 +6,7 @@ import Posts from "../pages/Posts";
 import Profile from "../pages/Profile";
 import AvatarPhoto from '../assets/photo.jpg'
 import Reg from '../pages/Reg'
-
+import UpdateProfile from '../pages/UpdateProfile'
 
 
 export const  privateRoutes = [
@@ -26,6 +26,7 @@ export const  privateRoutes = [
             email: 'zakrevskiyvlada@yandex.ru'
         }}/>, 
     exact:false },
+    {path: '/profile/update', element: <UpdateProfile/>, exact:true },
 ]
 
 export const publicRoutes = [

@@ -18,7 +18,7 @@ const Login = () => {
         let [error,token,username] = await findErrors(event, PostService.login, user, [400,401,403])
         setErr(error)
         if(username){
-            setUsername(username)
+            localStorage.setItem('username', username)
         }
         if(token){
             localStorage.setItem('auth',token)

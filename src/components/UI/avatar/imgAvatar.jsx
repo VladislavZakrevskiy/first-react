@@ -7,10 +7,8 @@ import {Buffer} from 'buffer';
 import { useImage } from '../../../hooks/useImage'
 
 const ImgAvatar = ({className, onClick, post_id}) => {
-    const {username} = useContext(AuthContext)
+    const username = localStorage.getItem('username')
     const url = 'http://localhost:5000/api/images/'
-    console.log(post_id)
-
     const screenShot = useImage(post_id)
   return (
     <div>

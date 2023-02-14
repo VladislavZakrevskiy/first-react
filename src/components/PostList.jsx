@@ -6,8 +6,7 @@ import classes from './form.module.css'
 
 
 
-const PostList=({posts, title, remove, ...props})=> {
-
+const PostList=({posts, title, remove, likeCount, ...props})=> {
 if(!posts.length){
   return (
       <h1 style={{textAlign:'center'}}>
@@ -30,7 +29,7 @@ if(!posts.length){
                     >                       
                         <div className={classes.post}>
                         <PostItem keyPost_id = {post.post_id} key={post.post_id} remove={remove} number={index + 1} post={post} />
-                        <ImgAvatar post_id={post.post_id} className={classes.img}/>
+                        
                         </div>
                     </CSSTransition>
                 )}
