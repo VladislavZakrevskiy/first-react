@@ -25,13 +25,12 @@ const Navbar = () => {
       {
         isAuth ?
         <div  className='navbar'>
-        <div style={{display:'flex'}}>
-        <MyButton onClick ={logOut}>
-              Выйти
-            </MyButton>
-            <Avatar src={AvatarPhoto}/>
-        </div>
+        <p className='gosuslugi'>Госуслуги live</p>
          <div  className='navbar_links'>
+         <MyButton onClick ={logOut}>
+              Выйти
+          </MyButton>
+          <Link className='navbar_links_items' to='/profile'>Профиль</Link>
          <Link className='navbar_links_items' to='/about'>О сайте</Link>
          <Link className='navbar_links_items' to='/posts'>Посты</Link>
        </div>

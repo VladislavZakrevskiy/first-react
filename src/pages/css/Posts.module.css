@@ -1,0 +1,10 @@
+.hr_line  {
+    color: #ED3F40;
+    
+}
+
+.filterDiv  {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}

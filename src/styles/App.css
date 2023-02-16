@@ -2,18 +2,24 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif
 }
 
 #root {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    background-color:lightgray;
+    
+    
 }
 
 .App {
-    width: 800px;
-    
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 80vw;
+    background-color: white;
+    padding: 50px;
 }
 
 .post {
@@ -72,27 +78,35 @@
 }
 
 .navbar  {
-    height: 70px;
-    width: 95vw;
+    border-bottom-left-radius: 15px ;
+    border-bottom-right-radius: 15px ;
+    height: 100px;
+    width:80vw;
+    background-color: white;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    padding: 0 15px;
-    border-bottom: 10px solid cadetblue;
-    border-radius: 30px;
+    padding: 20px;
+    margin-bottom: 40px;
 }
 
 .navbar_links  {
-    margin-left: auto;
+    margin-left: auto ;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
 }
 
 .navbar_links_items  {
-    background-color: aliceblue;
-    padding: 15px;
-    border-radius: 30%;
-    border-bottom: 2px solid teal;
-    margin: 0 7px;
+    color: #ED3F40;
     text-decoration: none;
-    color: black;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.gosuslugi  {
+    font-size: 56px;
+    font-weight: bold;
+    color: #ED3F40;
 }

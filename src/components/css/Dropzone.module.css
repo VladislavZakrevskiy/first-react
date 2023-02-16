@@ -1,23 +1,10 @@
-.drop_area  {
-    width: 40vw;
-    height: 20vw;
-    border: 4px dashed teal;
-    border-radius: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.drop{
+    padding: 80px;
+
 }
 
-.drop  {
-    width: 40vw;
-    height: 20vw;
-    border: 1px solid black;
-    border-radius: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.drop_area{
+    border: 3px dashed black;
+    padding: 80px;
+    border-radius: 20px;
 }

@@ -4,7 +4,7 @@ import PostService from '../API/PostService'
 import MyButton from '../components/UI/button/MyButton'
 import MyInput from '../components/UI/input/MyInput'
 import findErrors from '../utils/findErrors'
-import classes from './Reg.module.css'
+import classes from './css/Reg.module.css'
 
 const UpdateProfile = () => {
     const [info, setInfo] = useState({username:'', address:'', date_birth:'', telephone:'', email:''})
@@ -42,7 +42,6 @@ const UpdateProfile = () => {
                 className={classes.form}
                 onSubmit={submit}
             >
-            <div className={classes.nigger}>
                 <div className={classes.bracket}>
                 <MyInput value = {info.username} onChange={e=>formSome(e, 'username')} type='text' placeholder='Введите логин'/>
                 </div>
@@ -52,11 +51,11 @@ const UpdateProfile = () => {
                 <MyInput value = {info.telephone} onChange={e=>formSome(e, 'telephone')}  type='tel' placeholder='Введите номер телефона'/>
                 <MyInput value = {info.email} onChange={e=>formSome(e, 'email')}  type='email' placeholder='Введите почту'/>
                 </div>
-            </div>
+            
             
             </form>
             <MyButton onClick={submit} type='submit'>Изменить</MyButton>
-            <Link style={{textAlign:'center', }} to='/profile'>
+            <Link style={{textAlign:'center', textDecoration:'none' }} to='/profile'>
             <MyButton>Вернуться в профиль</MyButton>
             </Link>
         </div>

@@ -1,0 +1,55 @@
+.singlePost  {
+    background-color: white;
+    padding: 40px;
+    border-radius: 30px;
+    margin: 20px;
+}
+
+.comments{
+    font-size: 48px;
+    color: #ED3F40;
+    margin: 20px;
+    text-align: center;
+    margin: 40px;
+}
+
+.comments_list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comm_card{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.comm_email  {
+    color: #ED3F40;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.comm_name{
+    font-size: 30px;
+    color: #7D9794;
+    font-weight: bold;
+}
+
+.comm_body{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.form  {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+/* #ED3F40 */

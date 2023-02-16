@@ -4,12 +4,12 @@ import '../styles/App.css'
 import ImgAvatar from './UI/avatar/imgAvatar'
 import MyButton from './UI/button/MyButton'
 import MyModal from './UI/Modal/MyModal'
-import classes from './form.module.css'
+import classes from './css/form.module.css'
 import MyInput from '../components/UI/input/MyInput'
 import ImgForPost from '../components/UI/avatar/imgForPost'
 import PostService from '../API/PostService'
 import { AuthContext } from '../context'
-import styles from './postItem.module.css'
+import styles from './css/postItem.module.css'
 
 
 const PostItem=(props) =>{
@@ -60,13 +60,63 @@ const PostItem=(props) =>{
     else increment()
   }
 
+  function getMonth(number){
+    switch (number) {
+      case '01':
+        return 'Янв'
+        break;
+      case '02':
+        return 'Февр'
+        break;
+      case '03':
+        return 'Март'
+        break;
+      case '04':
+        return 'Апр'
+        break;
+      case '05':
+        return 'Май'
+        break;
+      case '06':
+        return 'Июнь'
+        break;
+      case '07':
+        return 'Июль'
+        break;
+      case '08':
+        return 'Авг'
+        break;
+      case '09':
+        return 'Сент'
+        break;
+      case '10':
+        return 'Окт'
+        break;
+      case '11':
+        return 'Нояб'
+        break;
+      case '12':
+        return 'Дек'
+        break;
+    }
+  }
+
   return (
-    <div style={{backgroundColor:'white',border: 'solid 2px teal', borderRadius: 20, padding: 10, margin: '20px 0 '}} >
+    <div  className={styles.post}>
     <div className='post'>
-       <strong style={{padding:10,  borderBottom:'2px solid teal', borderRadius: 10}}>{props.number}. {props.post.title}</strong>
-       <div style={{fontSize:20, padding: 20}}>
-         {props.post.body}
-       </div>
+       
+    <div  className={styles.post}>
+                  <div className={styles.date_cont}>
+                    <p className={styles.date_num}>{ props.post.date_made.split('T20:00:00.000Z')[0].split('-')[2]}</p>
+                    <p className={styles.date_month}>{getMonth(props.post.date_made.split('T20:00:00.000Z')[0].split('-')[1])}</p>
+                    <p className={styles.date_year}>{ props.post.date_made.split('T20:00:00.000Z')[0].split('-')[0]}</p>
+                  </div>
+                 
+                  <div className={styles.titleBody}>
+                    <p className={styles.title}>{props.post.title}</p>
+                    <p className={styles.body}>{props.post.body}</p>
+                  </div>
+                </div>
        <MyButton onClick={()=>setBtnModal(true)}>...</MyButton>
           <MyModal
             visible={btnModal}
@@ -99,14 +149,20 @@ const PostItem=(props) =>{
             visible={modal}
             setVisible={setModal}
           >
-              <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', gap:15,padding: 15}}>
-                <div style={{padding: 30, fontSize: 18, border: '3px solid teal', borderRadius:20}} className='post_content'>
-                  <strong>{props.number}. {props.post.title}</strong>
-                  <div>
-                    {props.post.body}
+              <div >
+                <div  className={styles.post}>
+                  <div className={styles.date_cont}>
+                    <p className={styles.date_num}>{ props.post.date_made.split('T20:00:00.000Z')[0].split('-')[2]}</p>
+                    <p className={styles.date_month}>{getMonth(props.post.date_made.split('T20:00:00.000Z')[0].split('-')[1])}</p>
+                    <p className={styles.date_year}>{ props.post.date_made.split('T20:00:00.000Z')[0].split('-')[0]}</p>
+                  </div>
+                 
+                  <div className={styles.titleBody}>
+                    <p className={styles.title}>{props.post.title}</p>
+                    <p className={styles.body}>{props.post.body}</p>
                   </div>
                 </div>
-                <div style={{display:'flex', justifyContent:"space-around", width:'100%'}}>
+                <div >
                   <MyButton onClick={()=> props.remove(props.post)}>Подтвердить</MyButton>
                   <MyButton onClick={()=> setModal(false)}>Отменить</MyButton>
                 </div>
@@ -114,11 +170,7 @@ const PostItem=(props) =>{
           </MyModal>
           
       </div>
-      <div className={styles.down}>
-      <p className={styles.date}>{ props.post.date_made}</p>
-      <button onClick={likeSetting} className={styles.like}>💖</button> 
-      <p className={styles.counter}> {likes }</p>
-     </div>
+      
      </div>
   )
 }

@@ -14,6 +14,7 @@ import { useObserver } from '../hooks/useObserver';
 import MySelect from '../components/UI/select/MySelect';
 import { AuthContext } from '../context';
 import { v4 } from 'uuid';
+import classes from './css/Posts.module.css'
 
 
 const Posts = () => {
@@ -61,8 +62,7 @@ const Posts = () => {
 
   return (
     <div className='App'> 
-    <MyButton 
-      style={{marginTop:'30px'}} 
+    <MyButton  
       onClick ={()=>setModal(true)}>
          Создать пост
     </MyButton>
@@ -73,22 +73,24 @@ const Posts = () => {
         create = {createPost}/>
     </MyModal>
     
-    <hr style={{margin: "15px 0"}}/>
-    <PostFilter
-      filter={filter}
-      setFilter = {setFilter}
-    />
-    <MySelect
-    value={limit}
-    onChanges={value => setLimit(value)}
-    defaultValue='Кол-во элементов на странице'
-    options={[
-      {value: 5, name: '5'},
-      {value: 10, name: '10'},
-      {value: 25, name: '25'},
-      {value: -1, name: 'Все'},
-    ]}
-    />
+    
+    <div className={classes.filterDiv}>
+      <MySelect
+      value={limit}
+      onChanges={value => setLimit(value)}
+      defaultValue='Кол-во элементов на странице'
+      options={[
+        {value: 5, name: '5'},
+        {value: 10, name: '10'},
+        {value: 25, name: '25'},
+        {value: -1, name: 'Все'},
+      ]}
+      />
+      <PostFilter
+        filter={filter}
+        setFilter = {setFilter}
+      />
+    </div>
     {
       postError &&
         <h1>Произошла ошибка ${postError}</h1>
@@ -97,7 +99,7 @@ const Posts = () => {
       
       remove = {removePost} 
       posts={sortedAndSearchPosts}  
-      title={`Список постов ${username}`}
+      title={`Добро пожаловать, ${username}!`}
       />
     <div ref={lastElement} style={{height:20}}>
 

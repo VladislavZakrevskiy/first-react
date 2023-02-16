@@ -1,3 +1,11 @@
+.myInput  {
+    min-width: 25vw;
+    height: 43px;
+    border-radius: 15px;
+    border: 2px solid #7D9794;
+    padding: 10px;
+    font-weight: bold;
+    color: #7D9794;
+    outline: none;
+}
 
-
-/*# sourceMappingURL=MyInput.module.css.map */

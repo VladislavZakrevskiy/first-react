@@ -6,16 +6,20 @@ import MyInput from '../components/UI/input/MyInput'
 import MyModal from '../components/UI/Modal/MyModal'
 import { AuthContext } from '../context'
 import findErrors from '../utils/findErrors'
-import classes from './Reg.module.css'
+import classes from './css/Reg.module.css'
 
 const Reg = () => {
-    const [modal, setModal] = useState(false)
+    const [modal, setModalErr] = useState(false)
     const [reg, setReg] = useState({username:'', password:'', address:'', date_birth:'', telephone:'', email:''})
     const [error, setErr] = useState()
 
     const submit = async event => {
-      setErr(await findErrors(event, PostService.registration, reg, [400,401,403]))
-      setModal(true) 
+      const err = await findErrors(event, PostService.registration, reg, [400,401,403])
+      if(err[0]){
+        setErr(err)
+      }
+      setModalErr(true) 
+      console.log(error[0].errors.errors[0].msg)
     }
 
     const formSome = (e, type) => {
@@ -41,7 +45,6 @@ const Reg = () => {
       }
       
     }
-
   return (
     <div>
         <div className={classes.main}>
@@ -50,7 +53,6 @@ const Reg = () => {
             className={classes.form}
             onSubmit={submit}
         >
-          <div className={classes.nigger}>
             <div className={classes.bracket}>
               <MyInput value = {reg.username} onChange={e=>formSome(e, 'username')} type='text' placeholder='Введите логин'/>
               <MyInput value = {reg.password} onChange={e=>formSome(e, 'password')}  type='password' placeholder='Введите пароль'/>
@@ -60,33 +62,31 @@ const Reg = () => {
               <MyInput value = {reg.date_birth} onChange={e=>formSome(e, 'date_birth')}  type='date' placeholder='Введите дату рождения'/>
               <MyInput value = {reg.telephone} onChange={e=>formSome(e, 'telephone')}  type='tel' placeholder='Введите номер телефона'/>
               <MyInput value = {reg.email} onChange={e=>formSome(e, 'email')}  type='email' placeholder='Введите почту'/>
-            </div>
-          </div>
-          
+            </div>          
         </form>
+        
         <MyButton onClick={submit} type='submit'>Зарегистрироваться</MyButton>
-        <Link style={{textAlign:'center', }} to='/login'>
+        <Link  to='/login'>
           <MyButton>Войти в аккаунт</MyButton>
         </Link>
     </div>
         
     <MyModal
       visible={modal} 
-      setVisible={setModal}
+      setVisible={setModalErr}
+      key='r3g4bedb443bb4brbf'
     >
-      {
-        typeof error == 'object'
+       {
+        typeof error[0] == 'object' && error && modal
         ? <div className={classes.error}>
-              <div className={classes.err_title}>{error.message}</div>
-            {error.errors.errors.reverse().map(el => 
-              <div className={classes.err_desc}>{el.msg}</div>
-          )}
+              <div className={classes.err_title}>{}</div>
+            
           </div>
         : <div className={classes.error}>
-            <div className={classes.err_title}>{error}</div>
+            <div className={classes.err_title}>{}</div>
           </div>
         
-      }
+      } 
     </MyModal>
 
     </div>

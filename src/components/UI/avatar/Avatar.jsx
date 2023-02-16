@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Profile from '../../../pages/Profile'
 import MyModal from '../Modal/MyModal'
-import classes from './Avatar.module.css'
+import classes from './css/Avatar.module.css'
 import AvatarPhoto from '../../../assets/photo.jpg'
 import PostService from '../../../API/PostService'
 import { AuthContext } from '../../../context'

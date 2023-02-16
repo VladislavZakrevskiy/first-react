@@ -26,10 +26,10 @@ const Profile = ({...props}) => {
 
 
   return (
-    <div style={{textAlign:'center', marginTop: 30}}>
+    <div className={classes.baza}>
         <div className={classes.main}>
             <div className={classes.right}>
-                <h1 style={{fontFamily:"monospace", fontSize: 30}}>Профиль</h1>
+                <h1 className={classes.titleProf}>Профиль</h1>
                 <ImgAvatar className={classes.ava}/>
                 <p className={classes.username}>{info.user_name}</p>
                 <MyButton onClick={()=> setModal(true)}>Загрузить фото профиля</MyButton>
@@ -41,13 +41,13 @@ const Profile = ({...props}) => {
                 </MyModal>
             </div>
            <div className={classes.left}>
-                <h1 style={{fontFamily:"monospace", fontSize: 30}}>Доп. Информация</h1>
-                <p className={classes.info}>Адрес: {info.address}</p>
-                <p className={classes.info}>Телефон: {info.telephone}</p>
-                <p className={classes.info}>Дата Рождения: {info.date_birth.split('T20:00:00.000Z')}</p>
-                <p className={classes.info}>Онлайн: {info.online}</p>
-                <p className={classes.info}>Email: {info.email}</p>
-                <Link to='update'>
+                <h1 className={classes.titleProf}>Доп. Информация</h1>
+                <p className={classes.info}>Адрес: <span>{info.address}</span></p>
+                <p className={classes.info}>Телефон: <span>{info.telephone}</span></p>
+                <p className={classes.info}>Дата Рождения: <span>{info.date_birth.split('T20:00:00.000Z')}</span></p>
+                <p className={classes.info}>Онлайн: <span>{info.online}</span></p>
+                <p className={classes.info}>Email: <span> {info.email}</span></p>
+                <Link style={{textDecoration:'none'}} to='update'>
                     <MyButton>
                         Изменить профиль 
                     </MyButton>

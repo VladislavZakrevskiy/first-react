@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React,{useContext, useState} from 'react';
-import classes from './Dropzone.module.css'
+import classes from './css/Dropzone.module.css'
 import { AuthContext } from '../context/index'
 import { v4 } from 'uuid'
  

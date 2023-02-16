@@ -4,7 +4,7 @@ import MyButton from './UI/button/MyButton';
 import MyInput from './UI/input/MyInput';
 import MyModal from './UI/Modal/MyModal';
 import ImgAvatar from './UI/avatar/imgAvatar'
-import classes from './form.module.css'
+import classes from './css/form.module.css'
 import { AuthContext } from '../context';
 import ImgForForm from './UI/avatar/ImgForForm';
 
@@ -43,23 +43,10 @@ import ImgForForm from './UI/avatar/ImgForForm';
               onClick={addNewPost} type=''>
                 Создать пост
             </MyButton>
-            <MyButton 
-              onClick={e=>{e.preventDefault();setModal(true)}}>
-                Добавить фото
-            </MyButton>
+            
           </div>
-      <MyModal
-        visible={modal}
-        setVisible={setModal}
-      >
-        <MyDropZone isPost={true} setIsImage={setIsImage} setModal={setModal}/>
-        
-      </MyModal>   
-      {
-          isImage
-          ? <ImgForForm className={classes.img}/>
-          : false
-      }
+       
+      
         </form>
     
   )

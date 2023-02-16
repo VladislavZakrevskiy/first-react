@@ -6,7 +6,7 @@ import MyInput from '../components/UI/input/MyInput'
 import MyModal from '../components/UI/Modal/MyModal'
 import { AuthContext } from '../context'
 import findErrors from '../utils/findErrors'
-import classes from './Reg.module.css'
+import classes from './css/Login.module.css'
 
 const Login = () => {
     const [modal, setModal] = useState(false)
@@ -27,22 +27,23 @@ const Login = () => {
     }
     
   return (
-    <div style={{height:'30vw',border: '3px solid teal', borderRadius: 30, margin: 30, padding:50,  display:'flex', flexDirection:'column', justifyContent:'space-between', alignItems:'center'}}>
-       
+      <div>
         <form 
-            style={{display:"flex", gap:10, flexDirection:'column'}}
+            className={classes.form}
             onSubmit={submit}
         >
-             <h1 style={{margin:10, textAlign:'center'}}>Войдите в учетную запись</h1>
+             <h1 className={classes.title}>Войдите в учетную запись</h1>
             <MyInput value={user.username} onChange={e => setUser({...user, username:e.target.value})} type='text' placeholder='Введите логин' />
             <MyInput value={user.password} onChange={e => setUser({...user, password:e.target.value})} type='password' placeholder='Введите пароль' />
             <MyButton>Войти</MyButton>
+            <Link style={{textDecoration:'none'}} to='/registration'>
+                <MyButton >
+                    Регистрация
+                </MyButton>
+            </Link>
         </form>
-        <Link to='/registration'>
-            <MyButton >
-                Регистрация
-            </MyButton>
-        </Link>
+        
+        
         <MyModal
             visible={modal}
             setVisible={setModal}
@@ -57,8 +58,9 @@ const Login = () => {
             </div>
             }
         </MyModal>
+      </div> 
+        
 
-    </div>
   )
 }
 
